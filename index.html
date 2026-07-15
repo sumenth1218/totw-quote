@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tale of Two — Quote Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F2E9;
+    --ink:#2B2A27;
+    --teal:#37566A;
+    --teal-deep:#2C4657;
+    --rosewood:#8A3B2E;
+    --gold:#B99B6B;
+    --backdrop:#DCD5C7;
+    --serif:'Cormorant Garamond', Didot, 'Bodoni MT', Georgia, serif;
+    --sans:'Mulish', 'Helvetica Neue', Arial, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--backdrop);
+    font-family:var(--sans);
+    color:var(--ink);
+    padding:56px 20px 90px;
+  }
+  .deck{max-width:820px;margin:0 auto;}
+  .deck-title{
+    text-align:center;
+    margin-bottom:44px;
+  }
+  .deck-title h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:30px;
+    letter-spacing:.5px;
+  }
+  .deck-title p{
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#7d7566;
+    margin-top:8px;
+  }
+  .pagelabel{
+    text-align:center;
+    font-size:10px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#8b8271;
+    margin:52px 0 16px;
+  }
+  .sheet{
+    background:var(--paper);
+    box-shadow:0 18px 45px rgba(60,50,35,.22), 0 2px 6px rgba(60,50,35,.14);
+    padding:72px 68px 58px;
+    position:relative;
+    min-height:1040px;
+    display:flex;
+    flex-direction:column;
+  }
+  .sheet.teal{
+    background:var(--teal);
+    color:#F1EDE3;
+  }
+  .sheet-footer{
+    margin-top:auto;
+    padding-top:36px;
+    text-align:center;
+    font-size:9px;
+    letter-spacing:5px;
+    color:#9a917f;
+  }
+  .sheet.teal .sheet-footer{color:#B9C6CE;}
+
+  /* wordmark */
+  .wordmark{text-align:center;margin-bottom:8px;}
+  .wordmark .mark{
+    font-size:16px;color:var(--rosewood);letter-spacing:2px;
+  }
+  .wordmark h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:6px;
+    margin-top:6px;
+  }
+  .wordmark span{
+    display:block;
+    font-family:var(--sans);
+    font-size:8px;
+    letter-spacing:6px;
+    color:#7d7566;
+    margin-top:4px;
+  }
+
+  /* PAGE 1 */
+  .hello{
+    margin:46px 0 34px;
+  }
+  .hello .hi{
+    font-family:var(--serif);
+    font-size:44px;
+    font-weight:400;
+  }
+  .hello .names{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:20px;
+    letter-spacing:3px;
+    color:var(--rosewood);
+    margin-top:2px;
+  }
+  .grid12{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin:0 24px;
+  }
+  .grid12 div{
+    aspect-ratio:3/4;
+    display:flex;align-items:flex-end;justify-content:center;
+    padding-bottom:10px;
+    font-size:7px;letter-spacing:2px;color:rgba(255,255,255,.75);
+  }
+  .t1{background:linear-gradient(160deg,#C99A5B,#8F6534);}
+  .t2{background:linear-gradient(160deg,#C4526A,#7E2E45);}
+  .t3{background:linear-gradient(160deg,#A9B98F,#6E7F58);}
+  .t4{background:linear-gradient(160deg,#B0413E,#6B2321);}
+  .t5{background:linear-gradient(160deg,#D8C49A,#A08A5C);}
+  .t6{background:linear-gradient(160deg,#8E3A2C,#571F16);}
+  .t7{background:linear-gradient(160deg,#9AA7B5,#5F6E7E);}
+  .t8{background:linear-gradient(160deg,#C97C4E,#8A4A24);}
+  .t9{background:linear-gradient(160deg,#7D8F7B,#4C5C4B);}
+  .t10{background:linear-gradient(160deg,#B76A54,#7A3A28);}
+  .t11{background:linear-gradient(160deg,#6E5C6E,#453648);}
+  .t12{background:linear-gradient(160deg,#D08A8A,#94514F);}
+  .cover-line{
+    text-align:center;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:21px;
+    margin-top:40px;
+    color:#4a463d;
+  }
+
+  /* PAGE 2 */
+  .eyebrow{
+    font-size:10px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--rosewood);
+    margin-bottom:14px;
+  }
+  .sheet.teal .eyebrow{color:#D9B48A;}
+  .display{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:46px;
+    line-height:1.08;
+    margin-bottom:34px;
+  }
+  .lede{
+    font-family:var(--serif);
+    font-size:26px;
+    line-height:1.35;
+    color:var(--rosewood);
+    border-left:2px solid var(--gold);
+    padding-left:22px;
+    margin-bottom:34px;
+    max-width:520px;
+  }
+  .bodycopy{
+    columns:1;
+    max-width:520px;
+    font-size:14.5px;
+    font-weight:300;
+    line-height:1.85;
+  }
+  .bodycopy p+p{margin-top:18px;}
+  .signoff{
+    margin-top:38px;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:18px;
+    color:#4a463d;
+  }
+
+  /* PAGE 3 */
+  .split{
+    display:grid;
+    grid-template-columns:1.25fr .9fr;
+    gap:44px;
+  }
+  .dlv{margin-bottom:26px;}
+  .dlv h4{
+    font-size:11px;letter-spacing:3px;font-weight:700;margin-bottom:6px;
+  }
+  .dlv p{
+    font-size:13px;font-weight:300;line-height:1.65;color:#45413a;
+  }
+  .timelines{border-left:1px solid #C9BFA9;padding-left:30px;}
+  .tl{
+    padding:13px 0;border-bottom:1px solid #DDD4C0;
+  }
+  .tl:last-child{border-bottom:none;}
+  .tl b{
+    display:block;font-size:11px;letter-spacing:2px;font-weight:700;
+    color:var(--rosewood);margin-bottom:3px;
+  }
+  .tl span{font-size:12.5px;font-weight:300;color:#45413a;}
+
+  /* PAGE 4 — teal */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:26px 0 40px;
+    font-size:12px;
+  }
+  th{
+    font-family:var(--serif);
+    font-size:15px;font-weight:600;
+    text-align:left;
+    padding:10px 12px;
+    border-bottom:1px solid rgba(241,237,227,.45);
+  }
+  td{
+    padding:13px 12px;
+    border-bottom:1px solid rgba(241,237,227,.18);
+    font-weight:300;
+    line-height:1.55;
+    vertical-align:top;
+    color:#E7E2D6;
+  }
+  td:first-child{font-weight:600;color:#F1EDE3;}
+  .invest{
+    text-align:center;
+    border-top:1px solid rgba(241,237,227,.4);
+    border-bottom:1px solid rgba(241,237,227,.4);
+    padding:34px 0 30px;
+    margin-bottom:34px;
+  }
+  .invest .eyebrow{margin-bottom:10px;}
+  .invest .figure{
+    font-family:var(--serif);
+    font-size:64px;
+    font-weight:500;
+    letter-spacing:1px;
+    color:#F6F2E9;
+  }
+  .invest .gst{
+    font-size:10px;letter-spacing:3px;margin-top:10px;color:#B9C6CE;
+  }
+  .smallcols{
+    display:grid;grid-template-columns:1fr 1fr;gap:36px;
+    font-size:12px;font-weight:300;line-height:1.8;color:#DCE3E7;
+  }
+  .smallcols h5{
+    font-size:10px;letter-spacing:3px;font-weight:700;
+    color:#D9B48A;margin-bottom:8px;
+  }
+  .validity{
+    margin-top:30px;text-align:center;
+    font-family:var(--serif);font-style:italic;font-size:15px;color:#EDE8DC;
+  }
+
+  /* PAGE 5 */
+  .pay3{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;
+    margin:28px 0 44px;text-align:center;
+  }
+  .pay3 .pct{
+    font-family:var(--serif);font-size:44px;font-weight:500;color:var(--teal);
+  }
+  .pay3 h5{
+    font-size:11px;letter-spacing:3px;font-weight:700;margin:8px 0 8px;
+    color:var(--rosewood);
+  }
+  .pay3 p{font-size:12px;font-weight:300;line-height:1.6;color:#45413a;}
+  .pay3 .col{border-top:2px solid var(--gold);padding-top:16px;}
+  .notebox{
+    background:#EFE9DB;
+    padding:26px 30px;
+    margin-bottom:40px;
+  }
+  .notebox h5{
+    font-family:var(--serif);font-size:19px;font-weight:600;margin-bottom:8px;
+  }
+  .notebox p{font-size:13.5px;font-weight:300;line-height:1.7;color:#45413a;}
+  .terms{
+    columns:2;column-gap:36px;
+    font-size:10.5px;font-weight:300;line-height:1.7;color:#55503f;
+  }
+  .terms h5{
+    column-span:all;
+    font-size:11px;letter-spacing:3px;font-weight:700;color:var(--ink);
+    margin-bottom:12px;
+  }
+  .terms ol{padding-left:16px;}
+  .terms li{margin-bottom:7px;}
+  .nextsteps{
+    margin-top:40px;
+    border-top:1px solid #C9BFA9;
+    padding-top:26px;
+    display:grid;grid-template-columns:1.2fr 1fr;gap:30px;
+  }
+  .nextsteps h5{
+    font-size:11px;letter-spacing:3px;font-weight:700;margin-bottom:10px;color:var(--rosewood);
+  }
+  .nextsteps ol{padding-left:16px;font-size:12.5px;font-weight:300;line-height:2;}
+  .contact{
+    font-size:12.5px;font-weight:300;line-height:2;
+  }
+  .contact b{font-weight:700;}
+
+  @media (max-width:700px){
+    .sheet{padding:44px 26px 40px;min-height:auto;}
+    .split,.smallcols,.pay3,.nextsteps{grid-template-columns:1fr;}
+    .terms{columns:1;}
+    .display{font-size:34px;}
+    .invest .figure{font-size:46px;}
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="deck-title">
+    <h1>Tale of Two — Quote, Redesigned</h1>
+    <p>Visual direction preview · not the final artwork</p>
+  </div>
+
+  <!-- ============ PAGE 1 ============ -->
+  <div class="pagelabel">Page 1 · Cover</div>
+  <div class="sheet">
+    <div class="wordmark">
+      <div class="mark">❖</div>
+      <h2>TALE OF TWO</h2>
+      <span>P H O T O S &nbsp; &amp; &nbsp; F I L M S</span>
+    </div>
+    <div class="hello">
+      <div class="hi">Hello</div>
+      <div class="names">ABC &amp; XYZ</div>
+    </div>
+    <div class="grid12">
+      <div class="t1">PORTFOLIO</div><div class="t2">PORTFOLIO</div><div class="t3">PORTFOLIO</div>
+      <div class="t4">PORTFOLIO</div><div class="t5">PORTFOLIO</div><div class="t6">PORTFOLIO</div>
+      <div class="t7">PORTFOLIO</div><div class="t8">PORTFOLIO</div><div class="t9">PORTFOLIO</div>
+      <div class="t10">PORTFOLIO</div><div class="t11">PORTFOLIO</div><div class="t12">PORTFOLIO</div>
+    </div>
+    <div class="cover-line">Every wedding deserves to be remembered the way it actually felt.</div>
+    <div class="sheet-footer">W W W . W E D D I N G S B Y T A L E O F T W O . C O M</div>
+  </div>
+
+  <!-- ============ PAGE 2 ============ -->
+  <div class="pagelabel">Page 2 · The Approach</div>
+  <div class="sheet">
+    <div class="eyebrow">Our Approach</div>
+    <div class="display">The Way<br>We Work</div>
+    <div class="lede">I shoot every wedding we take on. There is no B team and no associate sent in my place.</div>
+    <div class="bodycopy">
+      <p>When you book Tale of Two, you are booking me, which is why we hold a limited number of dates each season.</p>
+      <p>We work in a documentary style. Most of what matters at a wedding is never staged: your father adjusting his glasses just before the muhurtham, your friends failing to hold it together during the vidaai. We build the story of your day from those moments, not from a shot list.</p>
+      <p>Before the wedding, we spend time getting to know you both. This is not a formality. Knowing how the two of you are around each other tells me where to stand and when to wait. It also means you forget the camera faster on the day itself.</p>
+      <p>What you receive at the end is not a folder of images. It is an honest record of one of the few days you will want to return to for the rest of your life.</p>
+    </div>
+    <div class="signoff">— Sumenth, Founder &amp; Photographer</div>
+    <div class="sheet-footer">W W W . W E D D I N G S B Y T A L E O F T W O . C O M</div>
+  </div>
+
+  <!-- ============ PAGE 3 ============ -->
+  <div class="pagelabel">Page 3 · Deliverables &amp; Timelines</div>
+  <div class="sheet">
+    <div class="eyebrow">What You Receive</div>
+    <div class="display" style="font-size:38px;">Deliverables &amp;<br>Delivery Timelines</div>
+    <div class="split">
+      <div>
+        <div class="dlv"><h4>CANDID PHOTOS</h4><p>A hand-picked set of candid photographs, edited one by one in our signature style. Weddings of this scale typically receive 600 to 900 final images.</p></div>
+        <div class="dlv"><h4>TRADITIONAL PHOTOS</h4><p>Complete conventional coverage of every ritual and every guest, uploaded to your private online gallery.</p></div>
+        <div class="dlv"><h4>CANDID TEASER</h4><p>A 2 to 4 minute trailer of your wedding, cut to the moments that defined it.</p></div>
+        <div class="dlv"><h4>CANDID FILM</h4><p>Your full wedding story as a 10 to 20 minute documentary film, built around real sound from the day: the vows, the speeches, the conversations in between.</p></div>
+        <div class="dlv"><h4>TRADITIONAL VIDEOS</h4><p>Full-length coverage of each event, typically 1 to 2 hours per event, so every ritual is preserved from start to finish.</p></div>
+        <div class="dlv"><h4>ALBUMS</h4><p>Two heirloom albums, designed after you select your favourite images and printed on archival stock.</p></div>
+      </div>
+      <div class="timelines">
+        <div class="tl"><b>SNEAK PEEK PHOTOS</b><span>Within 48 hours of your final event</span></div>
+        <div class="tl"><b>TRADITIONAL PHOTOS</b><span>1 week after the last event</span></div>
+        <div class="tl"><b>CANDID PHOTOS</b><span>4 to 5 weeks</span></div>
+        <div class="tl"><b>TRADITIONAL VIDEOS</b><span>7 weeks</span></div>
+        <div class="tl"><b>CANDID TEASER &amp; FILM</b><span>15 weeks</span></div>
+        <div class="tl"><b>ALBUMS</b><span>3 weeks after your selection is finalised</span></div>
+      </div>
+    </div>
+    <div class="sheet-footer">W W W . W E D D I N G S B Y T A L E O F T W O . C O M</div>
+  </div>
+
+  <!-- ============ PAGE 4 ============ -->
+  <div class="pagelabel">Page 4 · Team &amp; Investment</div>
+  <div class="sheet teal">
+    <div class="eyebrow">Your Wedding, Your Team</div>
+    <div class="display" style="font-size:38px;">Team Allocation<br>and Event Details</div>
+    <table>
+      <tr><th>Event</th><th>Date</th><th>Candid Team</th><th>Traditional Team</th></tr>
+      <tr><td>Haldi &amp; Rituals</td><td>Nov 25</td><td>2 Candid Photographers<br>2 Candid Cinematographers</td><td>1 Photographer<br>1 Videographer</td></tr>
+      <tr><td>Wedding</td><td>Nov 26</td><td>2 Candid Photographers<br>2 Candid Cinematographers<br>Drone</td><td>1 Photographer<br>1 Videographer</td></tr>
+      <tr><td>Reception</td><td>Nov 26</td><td>2 Candid Photographers<br>2 Candid Cinematographers</td><td>1 Photographer<br>1 Videographer</td></tr>
+      <tr><td>Pre-Wedding<br><span style="font-weight:300;font-size:10px;">(Complimentary)</span></td><td>TBD</td><td>1 Candid Photographer<br>1 Candid Cinematographer</td><td>—</td></tr>
+    </table>
+    <div class="invest">
+      <div class="eyebrow" style="text-align:center;">Your Investment</div>
+      <div class="figure">₹ 0,00,000</div>
+      <div class="gst">18% GST APPLICABLE</div>
+    </div>
+    <div class="smallcols">
+      <div>
+        <h5>ADDITIONAL SERVICES, PER DAY</h5>
+        LED wall — ₹15,000<br>
+        Drone — ₹10,000<br>
+        Live streaming — ₹10,000
+      </div>
+      <div>
+        <h5>PLEASE NOTE</h5>
+        This quotation excludes travel and accommodation for events outside Hyderabad.
+      </div>
+    </div>
+    <div class="validity">This quotation and your dates are held for 7 days from 19 June 2026.</div>
+    <div class="sheet-footer">W W W . W E D D I N G S B Y T A L E O F T W O . C O M</div>
+  </div>
+
+  <!-- ============ PAGE 5 ============ -->
+  <div class="pagelabel">Page 5 · Payment, Terms &amp; Next Steps</div>
+  <div class="sheet">
+    <div class="eyebrow">Payment Terms</div>
+    <div class="pay3">
+      <div class="col"><div class="pct">10%</div><h5>ADVANCE</h5><p>Confirms your booking and blocks your dates on our calendar.</p></div>
+      <div class="col"><div class="pct">80%</div><h5>SECOND PAYMENT</h5><p>Due one week before your first event.</p></div>
+      <div class="col"><div class="pct">10%</div><h5>FINAL PAYMENT</h5><p>Due on delivery of all final files.</p></div>
+    </div>
+    <div class="notebox">
+      <h5>A note before you decide</h5>
+      <p>Once the celebrations end, the photographs and films are what remain. Choose the studio whose work you want to live with for the next fifty years. If that turns out to be us, we would be honoured.</p>
+    </div>
+    <div class="terms">
+      <h5>TERMS AND CONDITIONS</h5>
+      <ol>
+        <li>Coverage on each event day begins and ends at the wedding venue.</li>
+        <li>To keep the coverage consistent, we ask that no other professional photo or video team works alongside ours during the events.</li>
+        <li>Your wedding is backed up on two hard drives (5TB or 8TB depending on the scale of events), provided by you. One is returned to you with the final files. The other stays securely archived with us as a safety copy.</li>
+        <li>Separate event-wise candid video edits are available on request at ₹12,000 per event.</li>
+        <li>Please share all video revision requests together, within 15 days of delivery.</li>
+        <li>One round of revisions is included for the candid wedding film. Further revisions are chargeable based on the scope of work.</li>
+        <li>Last-minute additions, schedule changes, or extended coverage are subject to team availability and may carry additional charges.</li>
+        <li>Live streaming is managed by a third-party provider. We are not responsible for technical interruptions or signal issues beyond our control.</li>
+        <li>Once the album design is approved, please allow 20 to 30 working days for printing and delivery.</li>
+        <li>Final deliverables are shared once all payments are cleared.</li>
+      </ol>
+    </div>
+    <div class="nextsteps">
+      <div>
+        <h5>TO CONFIRM YOUR DATES</h5>
+        <ol>
+          <li>Transfer the advance (account details on request)</li>
+          <li>Mahima will send your booking confirmation and a short questionnaire</li>
+          <li>We schedule your pre-wedding conversation</li>
+        </ol>
+      </div>
+      <div class="contact">
+        <b>Mahima</b> — [phone]<br>
+        <b>Sumenth</b> — [phone]<br>
+        Tale of Two Photos &amp; Films<br>
+        Gachibowli, Hyderabad
+      </div>
+    </div>
+    <div class="sheet-footer">W W W . W E D D I N G S B Y T A L E O F T W O . C O M</div>
+  </div>
+</div>
+</body>
+</html>
